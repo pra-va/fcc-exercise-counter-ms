@@ -7,7 +7,7 @@ const {USERS_URL, HELLO_URL} = require("./urls");
 const UserModel = model(USER_MODEL);
 
 router
-    .get("/hello", (req, res) => {
+    .get(HELLO_URL, (req, res) => {
         res.json({hello: "Hello, world"});
     })
     .post(USERS_URL, ({body: {username}}, res) => {
@@ -23,14 +23,12 @@ router
                 })
             })
             .catch(err => console.error(err));
-        // user.save((err, savedUser) => {
-        //     if (err) console.error(err);
-        //     console.log(`**** Saved user ${username} successfully.`);
-        //     res.json({
-        //         username: savedUser._doc.username,
-        //         _id: savedUser._doc._id
-        //     });
-        // });
+    })
+    .get(USERS_URL, (req, res) => {
+        UserModel
+            .find()
+            .then(users => res.json(users))
+            .catch(err => console.error(err));
     });
 
 const error = res => {
