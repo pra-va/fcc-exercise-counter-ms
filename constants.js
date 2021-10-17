@@ -1,5 +1,4 @@
 module.exports = {
-    USERS_URL: "/users",
-
-    USER_MODEL: "user"
+    USER_MODEL: "user",
+    LOG_MODEL: "log"
 }
